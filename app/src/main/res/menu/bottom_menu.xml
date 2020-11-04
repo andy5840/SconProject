@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/nav_ranking"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_view_list_24"
+        android:title="Ranking" />
+
+    <item
+        android:id="@+id/nav_highlight"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_dashboard_24"
+        android:title="HighLights" />
+
+    <item
+        android:id="@+id/nav_toto"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_ac_unit_24"
+        android:title="Toto" />
+
+</menu>
