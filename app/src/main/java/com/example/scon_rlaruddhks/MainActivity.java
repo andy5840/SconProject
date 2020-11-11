@@ -4,45 +4,38 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.NavHostController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    BottomNavigationView navView;
+    BottomNavigationView bottomNavigationView;
+    NavHostFragment nav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        navView = findViewById(R.id.bottom_nav);
-        navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                FragmentManager manager = getSupportFragmentManager();
-                FragmentTransaction tran = manager.beginTransaction();
 
-                switch (item.getItemId()) {
-                    case R.id.nav_home:
-                        tran.replace(R.id.container, HomeFragment.newInstance());
-                        break;
-                    case R.id.nav_ranking:
-                        tran.replace(R.id.container, RankingFragment.newInstance());
-                        break;
-                    case R.id.nav_highlight:
-                        tran.replace(R.id.container, HighLightFragment.newInstance());
-                        break;
-                    case R.id.nav_toto:
-                        tran.replace(R.id.container, TotoFragment.newInstance());
-                        break;
-                }
-                tran.commit();
-                return true;
-            }
+        bottomNavigationView = findViewById(R.id.bottom_nav);
+        // nav = Navigation.findNavController(this, R.id.navHostFragment);
+        nav = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.navHostFragment);
+        NavigationUI.setupWithNavController(bottomNavigationView, nav.getNavController());
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            Toast.makeText(MainActivity.this, String.valueOf(item.getItemId()), Toast.LENGTH_SHORT).show();
+            return true;
         });
     }
 }
